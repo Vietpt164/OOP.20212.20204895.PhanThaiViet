@@ -17,15 +17,17 @@ public class TwoDoubleNumbers {
 
         double sum = num1 + num2, dif = Math.abs(num1 - num2),
                product = num1*num2;
-        /*if (num2 == 0) { 
-            strQuotient = "Invalid divisor!"
-        } else {strQuotient = String.} */
+        if (num2 == 0) { 
+            strQuotient = "Invalid divisor!";
+        } else {
+            strQuotient = Double.toString(num1/num2);
+        } 
 
 
         JOptionPane.showMessageDialog(null, "Sum: " + sum 
             +"\nDifference: " + dif + "\nProduct: " + product
-            + "\nQuotient: " + num1/num2,
-            "Operations", JOptionPane.INFORMATION_MESSAGE);
+            + "\nQuotient: " + strQuotient,
+            "Results", JOptionPane.INFORMATION_MESSAGE);
         
         System.exit(0);
     }
