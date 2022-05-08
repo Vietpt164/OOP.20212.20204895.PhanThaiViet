@@ -13,7 +13,7 @@ public class Cart {
 		} else {
 			itemsOrdered[qtyOrdered] = disc;
 			qtyOrdered += 1;
-			System.out.println("The disc has been added");
+			System.out.println("The disc named " + disc.getTitle() + " has been added");
 		}
 	}
 	
@@ -26,9 +26,11 @@ public class Cart {
                 }
                 i--;
                 num_disc_deleted++;
+                qtyOrdered--;
             }
         }
-		return "Number of discs removed: " + num_disc_deleted;
+		return num_disc_deleted + " dvds named " + disc.getTitle() + 
+				" has been removed";
 		
 	}
 	
