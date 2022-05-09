@@ -6,6 +6,8 @@ public class Cart {
 			new DigitalVideoDisc[MAX_NUMBERS_ORDER];
 	private int qtyOrdered = 0;
 	
+	
+	//methods
 	public int getQtyOrdered() {
 		return qtyOrdered;
 	}
@@ -14,7 +16,6 @@ public class Cart {
 		return itemsOrdered;
 	}
 
-	//methods
 	public void addDigitalVideoDisc(DigitalVideoDisc disc) {
 		if (qtyOrdered > 19) {
 			System.out.println("The cart is already full");
