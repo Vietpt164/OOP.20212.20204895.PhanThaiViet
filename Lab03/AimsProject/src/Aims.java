@@ -1,6 +1,6 @@
 
 public class Aims {
-
+	
 	public static void main(String[] args) {
 		
 		//Create a new cart
@@ -39,11 +39,26 @@ public class Aims {
 		DigitalVideoDisc dvd7 = new DigitalVideoDisc("Fifty Shades of Grey",
 				"Romance", "Sam Taylor-Johnson", 125, 16.04f);
 		anOrder.addDigitalVideoDisc(dvd7);
-		
-		
+				
 		System.out.println(anOrder.removeDigitalVideoDisc(dvd2));
 		System.out.println("Total cost is: ");
 		System.out.println(anOrder.totalCost());
+		
+		
+		//Test overloading methods
+		DigitalVideoDisc[] dvdList1 = {new DigitalVideoDisc("On Your Wedding Day", "Romance", 12.25f), 
+				new DigitalVideoDisc("Spider-Man: Homecoming", "Superhero Film", 35.49f),
+				new DigitalVideoDisc("Fast and Furious", "Action", 22.50f)
+		};	
+		anOrder.addDigitalVideoDisc1(dvdList1);
+		System.out.println("Total cost is: ");
+		System.out.println(anOrder.totalCost());
+		
+		anOrder.addDigitalVideoDisc(dvd6, dvd7);
+		System.out.println("Total cost is: ");
+		System.out.println(anOrder.totalCost());
+
+	
 	}
 
 }
