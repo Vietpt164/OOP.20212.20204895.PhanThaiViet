@@ -57,7 +57,6 @@ public class Aims {
 		anOrder.addDigitalVideoDisc(dvd6, dvd7);
 		System.out.println("Total cost is: ");
 		System.out.println(anOrder.totalCost());
-
 	
 	}
 
