@@ -21,8 +21,7 @@ public class DVDUtils {
 	}
 	
 	public static DigitalVideoDisc[] sortByCost(DigitalVideoDisc[] dvdList) {
-		int n = dvdList.length;
-        for (int i = 1; i < n; ++i) {
+        for (int i = 1; i < Cart.MAX_NUMBERS_ORDER && dvdList[i] != null; ++i) {
             DigitalVideoDisc key = dvdList[i];
             int j = i - 1;
  
@@ -39,8 +38,7 @@ public class DVDUtils {
 	}
 	
 	public static DigitalVideoDisc[] sortByTitle(DigitalVideoDisc[] dvdList) {
-		int n = dvdList.length;
-        for (int i = 1; i < n; ++i) {
+        for (int i = 1; i < Cart.MAX_NUMBERS_ORDER && dvdList[i] != null; ++i) {
             DigitalVideoDisc key = dvdList[i];
             int j = i - 1;
  

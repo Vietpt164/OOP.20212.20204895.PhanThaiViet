@@ -75,6 +75,59 @@ public class Cart {
 		return totalCost;
 	}
 	
+	public void sortByCost() {
+		DigitalVideoDisc[] sortedByCost = DVDUtils.sortByCost(this.itemsOrdered);
+		print(sortedByCost);
+	}
+	
+	public void sortByTitle() {
+		DigitalVideoDisc[] sortedByTitle = DVDUtils.sortByTitle(this.itemsOrdered);
+		print(sortedByTitle);
+	}
+	
+	public void searchById(int id) {
+		int res = 0;
+		for (int i = 0; i < qtyOrdered; i++) {
+			if (itemsOrdered[i].getId() == id) {
+				System.out.println(itemsOrdered[i].toString());
+				res += 1;
+				break;
+			}		
+		}
+		if (res == 0) {
+			System.out.println("No DVD is found!");
+		}
+	}
+	
+	public void print() {
+		DigitalVideoDisc[] print_items = itemsOrdered.clone();
+		for (int i = 1; i < Cart.MAX_NUMBERS_ORDER && print_items[i] != null; ++i) {
+            DigitalVideoDisc key = print_items[i];
+            int j = i - 1;
+            //Sort by title, then by cost(desc), then by length(desc)
+            while ( j >= 0 
+            		&& 
+            		( DVDUtils.compareByTitle(print_items[j], key) > 0
+            		|| ( DVDUtils.compareByTitle(print_items[j], key) == 0 && DVDUtils.compareByCost(print_items[j], key) == "smaller cost")
+            		|| ( DVDUtils.compareByTitle(print_items[j], key) == 0 && DVDUtils.compareByCost(print_items[j], key) == "equal cost" && print_items[i].getLength() < key.getLength() ) 
+            )) {
+            	print_items[j + 1] = print_items[j];
+                j = j - 1;
+            }
+            print_items[j + 1] = key;
+        }
+		print(print_items);
+	}
+	
+	private void print(DigitalVideoDisc[] dvdList) {
+		System.out.println("\n***********************CART***********************");
+		System.out.println("Ordered Items:");
+		for (int i = 0; i < qtyOrdered; i++) {
+			System.out.println((i+1) + ". " + dvdList[i].toString());
+		}
+		System.out.println("Total cost: " + totalCost());
+		System.out.println("***************************************************\n");
+	}
 
 	
 }
