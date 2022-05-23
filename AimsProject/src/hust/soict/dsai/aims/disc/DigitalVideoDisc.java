@@ -75,6 +75,15 @@ public class DigitalVideoDisc {
 				+ director + " - " + length + ": " + cost + "$";
 	}
 
+	public boolean isMatch(String title) {
+		String[] tokens = title.split(" ");
+		for (int i = 0; i < tokens.length; i++) {
+			if (this.title.toLowerCase().contains(tokens[i].toLowerCase())) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	
 	

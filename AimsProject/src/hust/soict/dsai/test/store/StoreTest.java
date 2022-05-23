@@ -1,31 +1,31 @@
-package hust.soict.dsai.test.cart;
-import hust.soict.dsai.aims.cart.Cart;
-import hust.soict.dsai.aims.disc.DigitalVideoDisc;
+package hust.soict.dsai.test.store;
 
-public class CartTest {
+import hust.soict.dsai.aims.disc.DigitalVideoDisc;
+import hust.soict.dsai.aims.store.Store;
+
+public class StoreTest {
 
 	public static void main(String[] args) {
-		//Create a new cart
-		Cart cart = new Cart();
+		Store store1 = new Store();
 		
-		//Create new dvd objects and add them to the cart
+		//add dvds to the store
 		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King",
 				"Animation", "Roger Aller", 87, 19.95f);
-		cart.addDigitalVideoDisc(dvd1);
+		store1.addDVD(dvd1);
 		
 		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars",
 				"Science Fiction", "George Lucas", 87, 24.95f);
-		cart.addDigitalVideoDisc(dvd2);
+		store1.addDVD(dvd2);
 		
 		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin",
 				"Animation", 18.99f);
-		cart.addDigitalVideoDisc(dvd3);
+		store1.addDVD(dvd3);
+		store1.print();
 		
-		cart.sortByCost();
-		cart.sortByTitle();
-		cart.searchByTitle("Aladin");
-		cart.print();
-		
+		//remove dvd from the store
+		store1.removeDVD(dvd3);
+		store1.print();
+
 	}
 
 }

@@ -92,7 +92,7 @@ public class Cart {
 		int res = 0;
 		for (int i = 0; i < qtyOrdered; i++) {
 			if (itemsOrdered[i].getId() == id) {
-				System.out.println(itemsOrdered[i].toString());
+				System.out.println(itemsOrdered[i]);
 				res += 1;
 				break;
 			}		
@@ -126,11 +126,25 @@ public class Cart {
 		System.out.println("\n***********************CART***********************");
 		System.out.println("Ordered Items:");
 		for (int i = 0; i < qtyOrdered; i++) {
-			System.out.println((i+1) + ". " + dvdList[i].toString());
+			System.out.println((i+1) + ". " + dvdList[i]);
 		}
 		System.out.println("Total cost: " + totalCost());
 		System.out.println("***************************************************\n");
 	}
+	
+	public void searchByTitle(String title) {
+		int res = 0;
+		for (int i = 0; i < qtyOrdered; i++) {
+			if (itemsOrdered[i].getTitle() == title) {
+				System.out.println(itemsOrdered[i].toString());
+				res += 1;
+				break;
+			}		
+		}
+		if (res == 0) {
+			System.out.println("No DVD is found!");
+		}
+	} 
 
 	
 }
