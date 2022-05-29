@@ -30,7 +30,9 @@ public class DVDUtils {
             /* Move elements of dvdList[0..i-1], that are
                greater than key, to one position ahead
                of their current position */
-            while (j >= 0 && DVDUtils.compareByCost(dvdList[j], key) == "greater cost") {
+            while (j >= 0 && 
+            		( DVDUtils.compareByCost(dvdList[j], key) == "smaller cost"
+            		|| (DVDUtils.compareByCost(dvdList[j], key) == "equal cost" && DVDUtils.compareByTitle(dvdList[j], key) > 0))) {
                 dvdList[j + 1] = dvdList[j];
                 j = j - 1;
             }
@@ -47,7 +49,9 @@ public class DVDUtils {
             /* Move elements of dvdList[0..i-1], that are
                greater than key, to one position ahead
                of their current position */
-            while (j >= 0 && DVDUtils.compareByTitle(dvdList[j], key) > 0) {
+            while (j >= 0 && 
+            		( DVDUtils.compareByTitle(dvdList[j], key) > 0
+            		|| (DVDUtils.compareByTitle(dvdList[j], key) == 0 && DVDUtils.compareByCost(dvdList[j], key) == "smaller cost"))) {
                 dvdList[j + 1] = dvdList[j];
                 j = j - 1;
             }
