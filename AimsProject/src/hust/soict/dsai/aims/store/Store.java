@@ -8,11 +8,15 @@ public class Store {
 	public DigitalVideoDisc[] getItemsInStore() {
 		return itemsInStore;
 	}
+	public int getNumItems() {
+		return numItems;
+	}
+
 
 	public void print() {
 		System.out.println("\n***********************STORE***********************");
 		System.out.println("Items In Store:");
-		for (int i = 0; i < numItems; i++) {
+		for (int i = 0; i < numItems; i++) {	
 			System.out.println(itemsInStore[i]);
 		}
 		System.out.println("***************************************************\n");
@@ -25,6 +29,7 @@ public class Store {
 	}
 	
 	public void removeDVD(DigitalVideoDisc disc) {
+		int count = 0;
 		for (int i = 0; i < numItems; i++) {
             if (itemsInStore[i].getTitle() == disc.getTitle()) {
                 for (int j = i; j < numItems; j++) {
@@ -32,10 +37,15 @@ public class Store {
                 }
                 i--;
                 numItems--;
+                count++;
             }
         }
+		if (count == 1) {
 		System.out.println("The dvd named " + disc.getTitle() + 
 				" has been removed from store");
+		} else {
+			System.out.println("There is no dvd named " + disc.getTitle() + " in the store");
+		}
 	}
 	
 

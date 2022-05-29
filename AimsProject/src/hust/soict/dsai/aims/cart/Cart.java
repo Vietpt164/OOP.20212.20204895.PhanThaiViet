@@ -25,7 +25,7 @@ public class Cart {
 		} else {
 			itemsOrdered[qtyOrdered] = disc;
 			qtyOrdered += 1;
-			System.out.println("The disc named " + disc.getTitle() + " has been added");
+			System.out.println("The disc named " + disc.getTitle() + " has been added to cart");
 		}
 	}
 	
@@ -36,7 +36,7 @@ public class Cart {
 			qtyOrdered++;
 			num_dvd_added++;
 		}
-		System.out.println("Number of dvds added: " + num_dvd_added);
+		System.out.println("Number of dvds added to cart: " + num_dvd_added);
 	}
 	
 	public void addDigitalVideoDisc1(DigitalVideoDisc... dvds) {
@@ -45,7 +45,7 @@ public class Cart {
 			this.addDigitalVideoDisc(dvds[i]);
 			num_dvd_added++;
 		}
-		System.out.println("Number of dvds added: " + num_dvd_added);
+		System.out.println("Number of dvds added to cart: " + num_dvd_added);
 	}
 	
 	public void addDigitalVideoDisc(DigitalVideoDisc dvd1,DigitalVideoDisc dvd2) {
@@ -66,7 +66,7 @@ public class Cart {
             }
         }
 		return num_disc_deleted + " dvds named " + disc.getTitle() + 
-				" has been removed";
+				" has been removed from cart";
 		
 	}
 	
@@ -145,6 +145,13 @@ public class Cart {
 			System.out.println("No DVD is found!");
 		}
 	} 
+	
+	public void empty() {
+		for (int i = 0; i < qtyOrdered; i++) {
+			itemsOrdered[i] = null;
+			qtyOrdered = 0;
+		}
+	}
 
 	
 }
