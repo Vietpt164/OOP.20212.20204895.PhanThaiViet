@@ -1,5 +1,5 @@
 package hust.soict.dsai.test.disc;
-import hust.soict.dsai.aims.disc.DigitalVideoDisc;
+import hust.soict.dsai.aims.media.DigitalVideoDisc;
 
 //Create a wrapper class that contains references of DVD, 
 //we can swap DVDs by swapping references of the wrapper class.
