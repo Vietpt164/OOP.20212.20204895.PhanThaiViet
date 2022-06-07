@@ -34,8 +34,36 @@ public class Media {
 		return dateAdded;
 	}
 
-	public Media() {
-		// TODO Auto-generated constructor stub
+	public Media(String title) {
+		super();
+		this.title = title;
+		nbMedias++;
+		this.id = nbMedias;
 	}
 
+	public Media(String title, String category) {
+		super();
+		this.title = title;
+		this.category = category;
+		nbMedias++;
+		this.id = nbMedias;
+	}
+
+	public Media(String title, String category, float cost) {
+		super();
+		this.title = title;
+		this.category = category;
+		this.cost = cost;
+		nbMedias++;
+		this.id = nbMedias;
+	}
+	
+	
+	
+	
+}
+
+
+interface Playable {
+	public void play();
 }

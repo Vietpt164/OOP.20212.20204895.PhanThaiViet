@@ -1,50 +1,42 @@
 package hust.soict.dsai.aims.store;
 
-import hust.soict.dsai.aims.media.DigitalVideoDisc;
+import java.util.ArrayList;
+import hust.soict.dsai.aims.media.*;
+
 
 public class Store {
-	private DigitalVideoDisc[] itemsInStore = new DigitalVideoDisc[100];
-	private int numItems = 0;
-	public DigitalVideoDisc[] getItemsInStore() {
+	private ArrayList<Media> itemsInStore = new ArrayList<Media>();
+	public ArrayList<Media> getItemsInStore() {
 		return itemsInStore;
-	}
-	public int getNumItems() {
-		return numItems;
 	}
 
 
 	public void print() {
 		System.out.println("\n***********************STORE***********************");
 		System.out.println("Items In Store:");
-		for (int i = 0; i < numItems; i++) {	
-			System.out.println(itemsInStore[i]);
+		for (int i = 0; i < itemsInStore.size(); i++) {	
+			System.out.println(itemsInStore.get(i));
 		}
 		System.out.println("***************************************************\n");
 	}
 	
-	public void addDVD(DigitalVideoDisc disc) {
-		itemsInStore[numItems] = disc;
-		numItems++;
-		System.out.println("The disc named " + disc.getTitle() + " has been added to store");
+	
+	
+	public void addMedia(Media media) {
+		if (itemsInStore.contains(media)) {
+			System.out.println("The media \"" + media.getTitle() + "\" has already in the store");
+		} else {
+			itemsInStore.add(media);
+			System.out.println("The media \"" + media.getTitle() + "\" has been added to the store");
+		}
 	}
 	
-	public void removeDVD(DigitalVideoDisc disc) {
-		int count = 0;
-		for (int i = 0; i < numItems; i++) {
-            if (itemsInStore[i].getTitle() == disc.getTitle()) {
-                for (int j = i; j < numItems; j++) {
-                    itemsInStore[j] = itemsInStore[j+1];
-                }
-                i--;
-                numItems--;
-                count++;
-            }
-        }
-		if (count == 1) {
-		System.out.println("The dvd named " + disc.getTitle() + 
-				" has been removed from store");
+	public void removeMedia(Media media) {
+		boolean bool = itemsInStore.remove(media);
+		if (bool == true) {
+			System.out.println("The media \"" + media.getTitle() + "\" has been removed from the store");
 		} else {
-			System.out.println("There is no dvd named " + disc.getTitle() + " in the store");
+			System.out.println("This media \"" + media.getTitle() + "\" is not in the store");
 		}
 	}
 	
