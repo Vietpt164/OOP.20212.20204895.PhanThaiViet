@@ -11,11 +11,21 @@ public class Aims {
 	public static void main(String[] args) {
 		
 		
-		
-		
 		Cart cart = new Cart();
 		Store Store1 = new Store();
-
+		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King",
+				"Animation", "Roger Aller", 87, 19.95f);
+		Store1.addMedia(dvd1);
+		
+		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars",
+				"Science Fiction", "George Lucas", 87, 24.95f);
+		Store1.addMedia(dvd2);
+		
+		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin",
+				"Animation", 18.99f);
+		Store1.addMedia(dvd3);
+		
+		
 		
 		Scanner keyboard  = new Scanner(System.in);
 		int option1, option2,option3,option4,option5,option6;
@@ -29,6 +39,7 @@ public class Aims {
 				break;
 			} else if (option1 == 1) {		// View store
 				do {
+					Store1.print();
 					storeMenu();
 					String strOption2 = keyboard.nextLine();
 					option2 = Integer.parseInt(strOption2);
@@ -133,6 +144,20 @@ public class Aims {
 							}
 						
 						} while(true);
+					} else if (option2 == 4) { // Play a media
+						System.out.println("Choose media's id:");
+						String strId = keyboard.nextLine();
+						int id = Integer.parseInt(strId), count = 0;
+						for (Media media : Store1.getItemsInStore()) {
+							if (media.getId() == id && media instanceof Playable) {
+								((Playable)media).play();
+								count += 1;
+								break;
+							}
+						}
+						if (count == 0) {
+							System.out.println("This media cannot be played");
+						}
 					}
 					
 				} while (true);		
@@ -234,6 +259,20 @@ public class Aims {
 						}
 						cart.print();
 						cart.empty();
+					} else if (option4 == 5) { // Play a media
+						System.out.println("Choose media's id:");
+						String strId = keyboard.nextLine();
+						int id = Integer.parseInt(strId), count = 0;
+						for (Media media : cart.getItemsOrdered()) {
+							if (media.getId() == id && media instanceof Playable) {
+								((Playable)media).play();
+								count += 1;
+								break;
+							}
+						}
+						if (count == 0) {
+							System.out.println("This media cannot be played");
+						}
 					}
 				
 				} while(true);
@@ -277,6 +316,7 @@ public class Aims {
 		System.out.println("1. See a Media’s details");
 		System.out.println("2. Add a Media to cart");
 		System.out.println("3. See current cart");
+		System.out.println("4. Play a media");
 		System.out.println("0. Back");
 		System.out.println("--------------------------------");
 		System.out.println("Please choose a number: 0-1-2-3");
@@ -289,6 +329,7 @@ public class Aims {
 		System.out.println("2. Sort Medias in cart");
 		System.out.println("3. Remove Media from cart");
 		System.out.println("4. Place order");
+		System.out.println("5. Play a media");
 		System.out.println("0. Back");
 		System.out.println("--------------------------------");
 		System.out.println("Please choose a number: 0-1-2-3-4");

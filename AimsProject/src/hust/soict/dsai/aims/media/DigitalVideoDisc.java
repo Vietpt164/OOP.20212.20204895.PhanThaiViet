@@ -1,5 +1,7 @@
 package hust.soict.dsai.aims.media;
 
+import hust.soict.dsai.aims.Playable;
+
 public class DigitalVideoDisc extends Disc implements Playable {
 
 	public void setTitle(String title) {
@@ -22,7 +24,7 @@ public class DigitalVideoDisc extends Disc implements Playable {
 	}
 	
 	public String toString() {
-		return "DVD - " + title + " - " + category + " - " 
+		return "DVD " + id + " - " + title + " - " + category + " - " 
 				+ director + " - " + length + ": " + cost + "$";
 	}
 

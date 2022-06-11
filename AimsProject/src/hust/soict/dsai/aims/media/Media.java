@@ -64,6 +64,4 @@ public class Media {
 }
 
 
-interface Playable {
-	public void play();
-}
+
