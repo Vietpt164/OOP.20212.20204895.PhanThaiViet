@@ -12,7 +12,7 @@ public class DigitalVideoDisc extends Disc implements Playable {
 		super(title);
 	}
 	public DigitalVideoDisc(String title, String category, float cost) {
-		super(category, category, cost);
+		super(title, category, cost);
 	} 
 	public DigitalVideoDisc(String title, String category, String director, float cost) {
 		super(title, category, cost);

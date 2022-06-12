@@ -18,8 +18,12 @@ public class Cart {
 
 	public void addMedia(Media media) {
 		if (itemsOrdered.size() < 20) {
-			itemsOrdered.add(media);
-			System.out.println("The media \"" + media.getTitle() + "\" has been added to the cart");
+			if (itemsOrdered.contains(media)) {
+				System.out.println("The media is already in the cart");
+			} else {
+				itemsOrdered.add(media);
+				System.out.println("The media \"" + media.getTitle() + "\" has been added to the cart");
+			}
 		} else {
 			System.out.println("The cart is already full");
 		}
@@ -28,18 +32,12 @@ public class Cart {
 	
 	
 	public void removeMedia(Media media) {
-		int numItemsRemoved = 0;
-		for (int i = 0; i < itemsOrdered.size(); i++) {
-            if (itemsOrdered.get(i).getTitle() == media.getTitle()) {
-                itemsOrdered.remove(i);
-                numItemsRemoved++;
-            }
-        }
-		if (numItemsRemoved == 0) {
+		if (itemsOrdered.contains(media)) {
+			itemsOrdered.remove(media);
+			System.out.println("The media \"" + media.getTitle() + "\" has been removed from the cart");
+		} else {
 			System.out.println("This media \"" + media.getTitle() + "\" is not in the cart");
 		}
-		System.out.println("Number of media named \"" + media.getTitle() + 
-				"\" has been removed from cart : " + numItemsRemoved);
 		
 	}
 	
@@ -51,14 +49,14 @@ public class Cart {
 		return totalCost - discount;
 	}
 	
-	public void sortByCost() {
-		ArrayList<Media> sortedByCost = MediaUtils.sortByCost(this.itemsOrdered);
-		print(sortedByCost);
+	public void sortByTitleCost() {
+		java.util.Collections.sort(itemsOrdered,Media.COMPARE_BY_TITLE_COST);
+		print(itemsOrdered);
 	}
 	
-	public void sortByTitle() {
-		ArrayList<Media> sortedByTitle = MediaUtils.sortByTitle(this.itemsOrdered);
-		print(sortedByTitle);
+	public void sortByCostTitle() {
+		java.util.Collections.sort(itemsOrdered,Media.COMPARE_BY_COST_TITLE);
+		print(itemsOrdered);
 	} 
 
 	

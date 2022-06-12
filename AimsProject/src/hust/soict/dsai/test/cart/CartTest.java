@@ -21,8 +21,8 @@ public class CartTest {
 				"Animation", 18.99f);
 		cart.addMedia(dvd3);
 		
-		cart.sortByCost();
-		cart.sortByTitle();
+		cart.sortByCostTitle();
+		cart.sortByTitleCost();
 		cart.searchByTitle("Aladin");
 		cart.print();
 		

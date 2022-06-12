@@ -2,7 +2,7 @@ package hust.soict.dsai.aims.media;
 
 import hust.soict.dsai.aims.Playable;
 
-public class Track implements Playable {
+public class Track implements Playable, Comparable<Track> {
 	private String title;
 	private int length;
 	
@@ -28,5 +28,14 @@ public class Track implements Playable {
 	public String toString() {
 		return "Track - " + title + " - " + length;
 	}
+	
+	public boolean equals(Object o) {
+		return title.equals(((Track)o).getTitle()) && length == ((Track)o).getLength();
+	}
+	
+	public int compareTo(Track track) {
+		return title.compareTo(track.getTitle());
+	}
+	
 	
 }

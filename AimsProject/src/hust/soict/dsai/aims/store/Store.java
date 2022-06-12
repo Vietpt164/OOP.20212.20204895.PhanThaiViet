@@ -32,8 +32,8 @@ public class Store {
 	}
 	
 	public void removeMedia(Media media) {
-		boolean bool = itemsInStore.remove(media);
-		if (bool == true) {
+		if (itemsInStore.contains(media)) {
+			itemsInStore.remove(media);
 			System.out.println("The media \"" + media.getTitle() + "\" has been removed from the store");
 		} else {
 			System.out.println("This media \"" + media.getTitle() + "\" is not in the store");

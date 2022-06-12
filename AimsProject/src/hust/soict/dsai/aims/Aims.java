@@ -80,6 +80,7 @@ public class Aims {
 						}
 						System.out.println("Number of Medias in the current cart:" + cart.getItemsOrdered().size());
 					} else if (option2 == 3) {		// See current cart
+						
 						//cartMenu();
 						do {
 							cartMenu();
@@ -126,30 +127,47 @@ public class Aims {
 									if (option6 == 0) {
 										break;
 									} else if (option6 == 1) { 
-										cart.sortByTitle();
+										cart.sortByTitleCost();
 									} else if (option6 == 2) {
-										cart.sortByCost();
+										cart.sortByCostTitle();
 									}
 									
 								} while (true);
 									
-							} else if (option4 == 3) {	// Remove Media from cart
-								System.out.println("Enter DVD's title: ");
-								String title = keyboard.nextLine();
-								cart.removeMedia(new DigitalVideoDisc(title));
-
-							} else if (option4 == 4) {
-								System.out.println("An order is created.");
+							} else if (option4 == 4) { //Place order
+								if (cart.getItemsOrdered().size() < 5) {
+									System.out.println("An order is created.");
+								} else {
+									System.out.println("You will receive a random, free lucky item below");
+									Media luckyItem = cart.getALuckyItem();
+									System.out.println(luckyItem);
+									cart.addMedia(luckyItem);
+								}
+								cart.print();
 								cart.empty();
+							} else if (option4 == 5) { // Play a media
+								System.out.println("Choose media's id:");
+								String strId = keyboard.nextLine();
+								int id = Integer.parseInt(strId), count = 0;
+								for (Media media : cart.getItemsOrdered()) {
+									if (media.getId() == id && media instanceof Playable && ((Disc)media).getLength() > 0) {
+										((Playable)media).play();
+										count += 1;
+										break;
+									}
+								}
+								if (count == 0) {
+									System.out.println("This media cannot be played");
+								}
 							}
 						
-						} while(true);
+						} while(true); 
 					} else if (option2 == 4) { // Play a media
 						System.out.println("Choose media's id:");
 						String strId = keyboard.nextLine();
 						int id = Integer.parseInt(strId), count = 0;
 						for (Media media : Store1.getItemsInStore()) {
-							if (media.getId() == id && media instanceof Playable) {
+							if (media.getId() == id && media instanceof Playable && ((Disc)media).getLength() > 0) {
 								((Playable)media).play();
 								count += 1;
 								break;
@@ -236,9 +254,9 @@ public class Aims {
 							if (option6 == 0) {
 								break;
 							} else if (option6 == 1) { 
-								cart.sortByTitle();
+								cart.sortByTitleCost();
 							} else if (option6 == 2) {
-								cart.sortByCost();
+								cart.sortByCostTitle();
 							}
 							
 						} while (true);
@@ -264,7 +282,7 @@ public class Aims {
 						String strId = keyboard.nextLine();
 						int id = Integer.parseInt(strId), count = 0;
 						for (Media media : cart.getItemsOrdered()) {
-							if (media.getId() == id && media instanceof Playable) {
+							if (media.getId() == id && media instanceof Playable && ((Disc)media).getLength() > 0) {
 								((Playable)media).play();
 								count += 1;
 								break;
@@ -286,6 +304,7 @@ public class Aims {
 		Thread threadD = new Thread(new MemoryDaemon());
 		threadD.setDaemon(true);
 		threadD.run();
+
 		
 		
 
