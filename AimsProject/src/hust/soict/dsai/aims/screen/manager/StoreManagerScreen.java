@@ -42,11 +42,19 @@ public class StoreManagerScreen extends JFrame{
 		menu.add(new JMenuItem("View store")); 
 		
 		JMenu smUpdateStore = new JMenu("Update Store"); 
-		smUpdateStore.add(new JMenuItem("Add Book")); 
-		smUpdateStore.add(new JMenuItem("Add CD")); 
+		
+		JMenuItem addBook = new JMenuItem("Add Book");
+		smUpdateStore.add(addBook);
+		addBook.addActionListener(new MenuListener()); 
+		
+		JMenuItem addCD = new JMenuItem("Add CD");
+		smUpdateStore.add(addCD);
+		addCD.addActionListener(new MenuListener()); 
+		
 		JMenuItem addDVD = new JMenuItem("Add DVD");
 		smUpdateStore.add(addDVD);
-		addDVD.addActionListener(new addDVDListener());
+		addDVD.addActionListener(new MenuListener());
+		
 		menu.add(smUpdateStore); 
 		
 		JMenuBar menuBar = new JMenuBar(); 
@@ -116,13 +124,20 @@ public class StoreManagerScreen extends JFrame{
 	
 	}
 	
-	private class addDVDListener implements ActionListener {
+	public class MenuListener implements ActionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String menuItem = e.getActionCommand();
 			if (menuItem.equals("Add DVD")) {
 				new AddDigitalVideoDiscToStoreScreen(store);
+				dispose();
+			} else if (menuItem.equals("Add CD")) {
+				new AddCompactDiscToStoreScreen(store);
+				dispose();
+			} else if (menuItem.equals("Add Book")) {
+				new AddBookToStoreScreen(store);
+				dispose();
 			}
 			
 		}
