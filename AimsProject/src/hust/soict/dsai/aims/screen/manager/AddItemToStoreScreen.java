@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -14,6 +16,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import hust.soict.dsai.aims.screen.manager.StoreManagerScreen.MenuListener;
 import hust.soict.dsai.aims.store.Store;
 
 public abstract class AddItemToStoreScreen extends JFrame {
@@ -31,13 +34,25 @@ public abstract class AddItemToStoreScreen extends JFrame {
 	public JMenuBar createMenuBar() { 
 		JMenu menu = new JMenu("Options"); 
 		
-		menu.add(new JMenuItem("View store")); 
+		JMenuItem viewStore = new JMenuItem("View store");
+		menu.add(viewStore); 
+		viewStore.addActionListener(new ViewStoreListener());
 		
 		JMenu smUpdateStore = new JMenu("Update Store"); 
-		smUpdateStore.add(new JMenuItem("Add Book")); 
-		smUpdateStore.add(new JMenuItem("Add CD")); 
-		smUpdateStore.add(new JMenuItem("Add DVD")); 
-		menu.add(smUpdateStore); 
+		
+		JMenuItem addBook = new JMenuItem("Add Book");
+		smUpdateStore.add(addBook);
+		addBook.addActionListener(new MenuListener()); 
+		
+		JMenuItem addCD = new JMenuItem("Add CD");
+		smUpdateStore.add(addCD);
+		addCD.addActionListener(new MenuListener()); 
+		
+		JMenuItem addDVD = new JMenuItem("Add DVD");
+		smUpdateStore.add(addDVD);
+		addDVD.addActionListener(new MenuListener());
+		
+		menu.add(smUpdateStore);
 		
 		JMenuBar menuBar = new JMenuBar(); 
 		menuBar.setLayout(new FlowLayout(FlowLayout .LEFT)); 
@@ -62,5 +77,37 @@ public abstract class AddItemToStoreScreen extends JFrame {
 		return header;
 	}
 	
+	private class ViewStoreListener implements ActionListener {
 
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String option = e.getActionCommand();
+			if (option.equals("View store")) {
+				new StoreManagerScreen(store);
+				dispose();
+			} 
+		}
+		
+	}
+	
+	public class MenuListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String menuItem = e.getActionCommand();
+			if (menuItem.equals("Add DVD")) {
+				new AddDigitalVideoDiscToStoreScreen(store);
+				dispose();
+			} else if (menuItem.equals("Add CD")) {
+				new AddCompactDiscToStoreScreen(store);
+				dispose();
+			} else if (menuItem.equals("Add Book")) {
+				new AddBookToStoreScreen(store);
+				dispose();
+			}
+			
+		}
+		
+	}
+	
 }

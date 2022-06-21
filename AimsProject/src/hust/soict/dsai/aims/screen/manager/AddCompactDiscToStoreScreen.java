@@ -6,21 +6,24 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-import hust.soict.dsai.aims.media.*;
+import hust.soict.dsai.aims.media.CompactDisc;
 import hust.soict.dsai.aims.store.Store;
 
-
-public class AddDigitalVideoDiscToStoreScreen extends AddItemToStoreScreen {
-	private JTextField title,category,director,length,cost;
+public class AddCompactDiscToStoreScreen extends AddItemToStoreScreen {
+private JTextField title,category,director,cost, artist;
 
 	
 	public JPanel createCenter() {
 		JPanel center = new JPanel();
 		center.setLayout(new BoxLayout(center, BoxLayout.Y_AXIS));
 		
-		center.add(new JLabel("Enter the DVD's details"));
+		center.add(new JLabel("Enter the CD's details"));
 		
 		//create DVDInput Panel
 		JPanel DVDInput = new JPanel();
@@ -37,14 +40,14 @@ public class AddDigitalVideoDiscToStoreScreen extends AddItemToStoreScreen {
 		DVDInput.add(new JLabel("Director"));
 		director = new JTextField(10);
 		DVDInput.add(director);
-	
-		DVDInput.add(new JLabel("Length"));
-		length = new JTextField(10);
-		DVDInput.add(length);
 		
 		DVDInput.add(new JLabel("Cost"));
 		cost = new JTextField(10);
-		DVDInput.add(cost);
+		DVDInput.add(cost);	
+		
+		DVDInput.add(new JLabel("Artist"));
+		artist = new JTextField(10);
+		DVDInput.add(artist);
 		
 		center.add(DVDInput);
 		
@@ -61,16 +64,18 @@ public class AddDigitalVideoDiscToStoreScreen extends AddItemToStoreScreen {
 		public void actionPerformed(ActionEvent evt) {
 			String button = evt.getActionCommand();
 	        if (button.equals("OK")) {
-	        	store.addMedia(new DigitalVideoDisc(title.getText(), category.getText(), director.getText(), 
-	        								Integer.parseInt(length.getText()), Float.parseFloat(cost.getText())));
-
+	        	CompactDisc cd = new CompactDisc(title.getText(), category.getText(), director.getText(), 
+	        								Float.parseFloat(cost.getText()), artist.getText());
+	        	store.addMedia(cd);
+	        	//System.out.println(cd);
+	        	
 	        	//reset all text field
-	        	title.setText(""); category.setText(""); director.setText(""); length.setText(""); cost.setText("");
+	        	title.setText(""); category.setText(""); director.setText(""); cost.setText(""); artist.setText("");
 	        }
 		}	
 	}
 	
-	public AddDigitalVideoDiscToStoreScreen(Store store) {
+	public AddCompactDiscToStoreScreen(Store store) {
 		this.store = store;
 		
 		Container cp = getContentPane();
@@ -78,14 +83,12 @@ public class AddDigitalVideoDiscToStoreScreen extends AddItemToStoreScreen {
 		cp.add(createNorth(), BorderLayout.NORTH);
 		cp.add(createCenter(), BorderLayout.CENTER);
 		
-		setTitle("Add DVD to store");
+		setTitle("Add CD to store");
 		setSize(1024, 768);
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 	
 	
-	
-		
 	
 }

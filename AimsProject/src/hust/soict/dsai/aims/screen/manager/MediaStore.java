@@ -1,6 +1,8 @@
 package hust.soict.dsai.aims.screen.manager;
 
 import java.awt.Color;
+import java.awt.ComponentOrientation;
+import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -16,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import hust.soict.dsai.aims.Playable;
+import hust.soict.dsai.aims.media.Disc;
 import hust.soict.dsai.aims.media.Media;
 
 public class MediaStore extends JPanel { 
@@ -59,15 +62,20 @@ public class MediaStore extends JPanel {
 	        if (button.equals("Play")) {
 	            // create a dialog Box
 	            JDialog play = new JDialog();
+	            Container pl = play.getContentPane();
+	            pl.setLayout(new BoxLayout(pl, BoxLayout.Y_AXIS));
 	            play.setTitle("Playing " + media.getClass().getSimpleName());
 	 
 	            // create a label
-	            JLabel l = new JLabel("Title: " + media.getTitle());
+	            JLabel title = new JLabel("Title: " + media.getTitle());
+	            JLabel length = new JLabel("Length: " + ((Disc)media).getLength());
 	 
-	            play.add(l);
+	            pl.add(title);
+	            pl.add(length);
 	 
 	            // setsize of dialog
-	            play.setSize(200, 100);
+	            play.setSize(250, 100);
+	            play.setLocationRelativeTo(null);
 	 
 	            // set visibility of dialog
 	            play.setVisible(true);
