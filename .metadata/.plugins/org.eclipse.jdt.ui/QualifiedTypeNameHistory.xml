@@ -31,4 +31,5 @@
     <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
     <fullyQualifiedTypeName name="hust.soict.dsai.aims.media.CompactDisc"/>
     <fullyQualifiedTypeName name="hust.soict.dsai.aims.media.Book"/>
+    <fullyQualifiedTypeName name="javafx.fxml.FXMLLoader"/>
 </qualifiedTypeNameHistroy>
