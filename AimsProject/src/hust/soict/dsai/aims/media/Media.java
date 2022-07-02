@@ -65,8 +65,12 @@ public abstract class Media implements Comparable<Media> {
 		this.id = nbMedias;
 	}
 	
-	public boolean equals(Object o) {
-		return this.id == ((Media)o).getId();
+	public boolean equals(Object media) {
+		if (media == null) {
+			return false;
+		} else {
+			return this.id == ((Media) media).getId();
+		}
 	}
 	
 	public int compareTo(Media media) {

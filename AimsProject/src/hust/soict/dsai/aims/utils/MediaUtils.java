@@ -2,6 +2,7 @@ package hust.soict.dsai.aims.utils;
 
 import java.util.ArrayList;
 import hust.soict.dsai.aims.media.*;
+import javafx.collections.ObservableList;
 
 public class MediaUtils {
 	public static String compareByCost(Media media1, Media media2) {
@@ -60,6 +61,8 @@ public class MediaUtils {
         }
         return mediaList;
 	}
+
+
 	
 
 	
