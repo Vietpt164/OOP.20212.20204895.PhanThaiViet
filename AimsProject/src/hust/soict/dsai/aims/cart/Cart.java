@@ -3,14 +3,16 @@ import java.util.ArrayList;
 import java.util.Random;
 import hust.soict.dsai.aims.media.*;
 import hust.soict.dsai.aims.utils.MediaUtils;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Cart {
 	//attributes
 	public static final int MAX_NUMBERS_ORDER = 20;
-	private ArrayList<Media> itemsOrdered = new ArrayList<Media>();
+	private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
 	private float discount;
 	
-	public ArrayList<Media> getItemsOrdered() {
+	public ObservableList<Media> getItemsOrdered() {
 		return itemsOrdered;
 	}
 
@@ -76,15 +78,15 @@ public class Cart {
 	
 	public void print() {
 		//Print the list of items. The order of medias should be alphabetical, then by cost(decreasing)
-		ArrayList<Media> print_items = MediaUtils.sortByTitle(itemsOrdered);
-		print(print_items);
+		java.util.Collections.sort(itemsOrdered,Media.COMPARE_BY_TITLE_COST);
+		print(itemsOrdered);
 	}
 	
-	private void print(ArrayList<Media> mediaList) {
+	private void print(ObservableList<Media> itemsOrdered2) {
 		System.out.println("\n***********************CART***********************");
 		System.out.println("Ordered Items:");
-		for (int i = 0; i < mediaList.size(); i++) {
-			System.out.println((i+1) + ". " + mediaList.get(i));
+		for (int i = 0; i < itemsOrdered2.size(); i++) {
+			System.out.println((i+1) + ". " + itemsOrdered2.get(i));
 		}
 		System.out.println("Total cost: " + totalCost());
 		System.out.println("***************************************************\n");
