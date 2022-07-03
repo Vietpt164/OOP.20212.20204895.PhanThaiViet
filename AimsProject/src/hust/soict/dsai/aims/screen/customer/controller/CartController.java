@@ -15,6 +15,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
@@ -105,6 +107,35 @@ public class CartController {
     	}
     	
     }
+    
+    @FXML
+    void placeOrder(ActionEvent event) {
+    	if (cart.getItemsOrdered().size() > 0) {
+    		Alert orderConfirmation = new Alert(AlertType.CONFIRMATION);
+    		orderConfirmation.setTitle("Place Order");
+    		orderConfirmation.setHeaderText("Are you sure want to place order");
+    		orderConfirmation.setContentText("Your total bill is: " + cart.totalCost() + " $");
+    		
+    		if (orderConfirmation.showAndWait().get() == ButtonType.OK){
+    			cart.empty();
+        		costLabel.setText(cart.totalCost() + "");
+        		Alert orderInfo = new Alert(AlertType.INFORMATION);
+        		orderInfo.setTitle("Place Order");
+        		orderInfo.setHeaderText("Your order has been created");
+        		orderInfo.setContentText("Press OK to continue shopping");
+        		orderInfo.show();
+        		
+    		}
+		} else {
+			Alert orderAlert = new Alert(AlertType.ERROR);
+    		orderAlert.setTitle("Place Order");
+    		orderAlert.setHeaderText("An error occured when processing your order");
+    		orderAlert.setContentText("There is nothing in the cart");
+    		orderAlert.show();
+		}
+		
+    }
+    
     
     public void initialize() {
     	colMediaId.setCellValueFactory(
