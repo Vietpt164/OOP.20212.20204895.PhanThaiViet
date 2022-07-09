@@ -1,5 +1,6 @@
 package hust.soict.dsai.aims;
 import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.aims.media.*;
 import hust.soict.dsai.aims.store.Store;
 
@@ -151,7 +152,12 @@ public class Aims {
 								int id = Integer.parseInt(strId), count = 0;
 								for (Media media : cart.getItemsOrdered()) {
 									if (media.getId() == id && media instanceof Playable && ((Disc)media).getLength() > 0) {
-										((Playable)media).play();
+										try {
+											((Playable)media).play();
+										} catch (PlayerException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
 										count += 1;
 										break;
 									}
@@ -168,7 +174,12 @@ public class Aims {
 						int id = Integer.parseInt(strId), count = 0;
 						for (Media media : Store1.getItemsInStore()) {
 							if (media.getId() == id && media instanceof Playable && ((Disc)media).getLength() > 0) {
-								((Playable)media).play();
+								try {
+									((Playable)media).play();
+								} catch (PlayerException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
 								count += 1;
 								break;
 							}
@@ -283,7 +294,12 @@ public class Aims {
 						int id = Integer.parseInt(strId), count = 0;
 						for (Media media : cart.getItemsOrdered()) {
 							if (media.getId() == id && media instanceof Playable && ((Disc)media).getLength() > 0) {
-								((Playable)media).play();
+								try {
+									((Playable)media).play();
+								} catch (PlayerException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
 								count += 1;
 								break;
 							}
