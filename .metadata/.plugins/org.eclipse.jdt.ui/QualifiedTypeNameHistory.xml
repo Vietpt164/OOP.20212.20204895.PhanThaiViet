@@ -53,4 +53,6 @@
     <fullyQualifiedTypeName name="hust.soict.dsai.aims.screen.customer.controller.ViewStoreController"/>
     <fullyQualifiedTypeName name="hust.soict.dsai.aims.store.Store"/>
     <fullyQualifiedTypeName name="hust.soict.dsai.aims.cart.Cart"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.Alert"/>
+    <fullyQualifiedTypeName name="javafx.scene.control.Alert.AlertType"/>
 </qualifiedTypeNameHistroy>

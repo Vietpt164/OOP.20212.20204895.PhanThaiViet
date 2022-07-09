@@ -5,10 +5,12 @@ import hust.soict.dsai.aims.store.Store;
 
 import java.util.Scanner;
 
+import javax.naming.LimitExceededException;
+
 public class Aims {
 
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws LimitExceededException {
 		
 		
 		Cart cart = new Cart();
