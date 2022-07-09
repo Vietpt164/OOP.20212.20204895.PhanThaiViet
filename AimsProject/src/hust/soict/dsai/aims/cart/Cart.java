@@ -10,7 +10,6 @@ public class Cart {
 	//attributes
 	public static final int MAX_NUMBERS_ORDER = 20;
 	private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
-	private float discount;
 	
 	public ObservableList<Media> getItemsOrdered() {
 		return itemsOrdered;
@@ -48,7 +47,7 @@ public class Cart {
 		for (int i = 0; i < itemsOrdered.size(); i++) {
 			totalCost += itemsOrdered.get(i).getCost();
 		}
-		return totalCost - discount;
+		return totalCost;
 	}
 	
 	public void sortByTitleCost() {
@@ -114,7 +113,6 @@ public class Cart {
 		Random rand = new Random();
 		int luckyNumber = rand.nextInt(itemsOrdered.size());
 		Media luckyItem = itemsOrdered.get(luckyNumber);
-		discount = luckyItem.getCost();
 		return luckyItem;
 	}
 
