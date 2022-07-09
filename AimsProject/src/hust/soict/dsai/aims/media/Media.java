@@ -69,13 +69,13 @@ public abstract class Media implements Comparable<Media> {
 		if (media == null) {
 			return false;
 		} else {
-			return this.id == ((Media) media).getId();
+			return this.id == ((Media) media).getId() && this.cost == ((Media) media).getCost();
 		}
 	}
 	
 	public int compareTo(Media media) {
 		if (title.compareTo(media.getTitle()) == 0) {
-			return category.compareTo(media.getCategory());
+			return (int)Math.floor(this.cost - media.getCost());
 		} else {
 			return title.compareTo(media.getTitle());
 		}	
